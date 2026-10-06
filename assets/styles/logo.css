@@ -1,0 +1,55 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    visibility: hidden;
+}
+
+.hero-logo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.hero-logo svg {
+    width: clamp(280px, 34vw, 520px);
+    height: auto;
+    display: block;
+}
+
+.dev {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 300;
+    margin-left: 0.15em;
+    margin-bottom: 4.5rem;
+    line-height: 1;
+}
+
+.hero-content {
+    width: clamp(280px, 34vw, 520px);
+    margin-top: 1.5rem;
+    text-align: left;
+    align-self: center;
+
+    /* décale le texte pour l'aligner sur le R,
+       car .dev élargit la ligne du logo */
+    transform: translateX(-3.2rem);
+}
+
+.hero-content h1 {
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.hero-content p {
+    margin-top: 0.7rem;
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    line-height: 1.5;
+    color: #bdbdbd;
+    white-space: nowrap;
+}
