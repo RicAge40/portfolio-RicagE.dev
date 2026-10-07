@@ -102,4 +102,41 @@ if (logo) {
         },
         ">",
     );
+
+    // Pavés de fond : apparition douce avant la machine à écrire
+    timeline.to(
+        ".hero-bg__block",
+        {
+            opacity: 0.18,
+            duration: 1.4,
+            ease: "sine.inOut",
+            stagger: 0.15,
+            onComplete: startBackgroundAnimation,
+        },
+        2.6,
+    );
+
+    function startBackgroundAnimation() {
+        const bgBlocks = document.querySelectorAll(".hero-bg__block");
+
+        const movements = [
+            { x: 1050, y: 300, rotation: 10, duration: 18 },
+            { x: 650, y: -750, rotation: -8, duration: 22 },
+            { x: -1100, y: 420, rotation: 8, duration: 25 },
+        ];
+
+        bgBlocks.forEach((block, index) => {
+            const move = movements[index];
+
+            gsap.to(block, {
+                x: move.x,
+                y: move.y,
+                rotation: move.rotation,
+                duration: move.duration,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+            });
+        });
+    }
 }
