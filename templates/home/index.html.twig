@@ -5,7 +5,8 @@
 {% block body %}
 
 <main>
-    <section class="hero">
+<div class="section-transition" aria-hidden="true"></div>
+    <section id="home" class="hero">
 
         <div class="hero-bg" aria-hidden="true">
             <span class="hero-bg__block hero-bg__block--1"></span>
@@ -35,9 +36,10 @@
     </nav>
 
     </section>
-</main>
 
-<section id="projets" class="projects">
+    <section id="projets" class="projects">
+
+
     <h2>PROJETS</h2>
 
     <article class="project-card">
@@ -61,7 +63,11 @@
     </div>
 
     <div class="project-visual">
-        {# L'image viendra ici #}
+        <img
+    src="{{ asset('images/projets/Mask.jpg') }}"
+    alt="Aperçu du site HUMAIN"
+    class="project-card__image"
+>
     </div>
 
 </article>
@@ -74,5 +80,10 @@
 <section id="contact" class="contact">
     <h2>CONTACT</h2>
 </section>
+
+    
+</main>
+
+
 
 {% endblock %}

@@ -3,6 +3,7 @@
     min-height: 100vh;
     background: #080808;
     padding: 6rem 4rem;
+    overflow: hidden;
 }
 
 .projects h2 {
@@ -16,8 +17,19 @@
     align-items: center;
     gap: 6rem;
 
-    max-width: 1200px;
+    max-width: 1350px;
     margin: 7rem auto 0;
+}
+
+.projects h2,
+.project-card {
+    position: relative;
+    z-index: 1;
+}
+.project-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .project-info {
@@ -58,6 +70,5 @@
 
 .project-visual {
     width: 100%;
-    aspect-ratio: 16 / 9;
     border: 1px solid #333;
 }
