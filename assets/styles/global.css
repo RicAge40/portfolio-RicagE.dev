@@ -1,4 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap");
+@font-face {
+    font-family: "Ranade";
+    src: url("../fonts/Ranade-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ranade";
+    src: url("../fonts/Ranade-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ranade";
+    src: url("../fonts/Ranade-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
 
 * {
     margin: 0;
@@ -17,7 +39,7 @@ body {
     min-height: 100%;
     background: #080808;
     color: #fff;
-    font-family: "Manrope", sans-serif;
+    font-family: "Ranade", Helvetica, Arial, sans-serif;
 
     overflow-x: hidden;
 }

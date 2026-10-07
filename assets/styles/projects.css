@@ -6,6 +6,58 @@
 }
 
 .projects h2 {
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-size: clamp(3rem, 4vw, 4.5rem);
     font-weight: 500;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 6rem;
+
+    max-width: 1200px;
+    margin: 7rem auto 0;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.project-number {
+    color: #ff8a00;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+}
+
+.project-info h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+}
+
+.project-type,
+.project-stack {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.project-stack {
+    margin-top: 0.5rem;
+}
+
+.project-link {
+    margin-top: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project-visual {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid #333;
 }
