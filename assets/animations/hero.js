@@ -120,9 +120,9 @@ if (logo) {
         const bgBlocks = document.querySelectorAll(".hero-bg__block");
 
         const movements = [
-            { x: 1050, y: 300, rotation: 10, duration: 18 },
-            { x: 650, y: -750, rotation: -8, duration: 22 },
-            { x: -1100, y: 420, rotation: 8, duration: 25 },
+            { x: 1050, y: 300, duration: 18 },
+            { x: 650, y: -750, duration: 22 },
+            { x: -1100, y: 420, duration: 25 },
         ];
 
         bgBlocks.forEach((block, index) => {
@@ -131,11 +131,20 @@ if (logo) {
             gsap.to(block, {
                 x: move.x,
                 y: move.y,
-                rotation: move.rotation,
+
                 duration: move.duration,
                 ease: "sine.inOut",
                 repeat: -1,
                 yoyo: true,
+            });
+            gsap.to(block, {
+                rotation: () => gsap.utils.random(-25, 60),
+                duration: () => gsap.utils.random(6, 10),
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                repeatRefresh: true,
+                transformOrigin: "50% 50%",
             });
         });
     }

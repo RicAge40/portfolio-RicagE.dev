@@ -91,7 +91,7 @@
     height: 800px;
     left: 20%;
     bottom: -700px;
-    background: #de1b05;
+    background: #8f0f01;
 }
 
 .hero-bg__block--3 {
@@ -100,10 +100,6 @@
     right: -270px;
     top: -350px;
     background: #fdb85d;
-}
-
-.hero-bg__block--4 {
-    display: none;
 }
 
 /* Le contenu du Hero reste au-dessus */
