@@ -1,0 +1,11 @@
+.profile {
+    position: relative;
+    min-height: 100vh;
+    background: #080808;
+    padding: 6rem 4rem;
+}
+
+.profile h2 {
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 500;
+}

@@ -7,6 +7,9 @@ import "./stimulus_bootstrap.js";
  */
 import "./styles/global.css";
 import "./styles/logo.css";
+import "./styles/projects.css";
+import "./styles/profile.css";
+import "./styles/contact.css";
 import "./animations/hero.js";
 
 console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");

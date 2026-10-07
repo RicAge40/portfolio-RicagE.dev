@@ -103,6 +103,13 @@ if (logo) {
         ">",
     );
 
+    // Apparition de la nav après la machine à écrire
+    timeline.to(".hero-nav", {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+    });
+
     // Pavés de fond : apparition douce avant la machine à écrire
     timeline.to(
         ".hero-bg__block",
