@@ -4,12 +4,6 @@ const logo = document.querySelector(".hero-logo svg");
 
 window.addEventListener("click", () => {
     const rect = logo.getBoundingClientRect();
-
-    console.log({
-        left: rect.left,
-        width: rect.width,
-        transform: getComputedStyle(logo).transform,
-    });
 });
 
 if (logo) {

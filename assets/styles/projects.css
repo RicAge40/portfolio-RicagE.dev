@@ -1,6 +1,6 @@
 .projects {
     position: relative;
-    min-height: 100vh;
+    min-height: 110vh;
     background: #080808;
     padding: 6rem 4rem;
     overflow: hidden;
@@ -19,6 +19,10 @@
 
     max-width: 1350px;
     margin: 7rem auto 0;
+}
+
+.project-card[hidden] {
+    display: none;
 }
 
 .projects h2,
@@ -63,9 +67,25 @@
 
 .project-link {
     margin-top: 2rem;
+    padding: 0;
+    background: none;
+    border: none;
     color: #fff;
-    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.9rem;
     font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.project-link:focus-visible {
+    outline: 2px solid #ff8a00;
+    outline-offset: 6px;
 }
 
 .project-visual {

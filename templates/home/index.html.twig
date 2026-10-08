@@ -39,38 +39,40 @@
 
     <section id="projets" class="projects">
 
-
     <h2>PROJETS</h2>
 
-    <article class="project-card">
+    {# Données du projet HUMAIN #}
+    {% set projects = [
+        {
+            number: '#01',
+            slug: 'humain',
+            title: 'HUMAIN',
+            description: 'Site artistique immersif & administration sur mesure.',
+            stack: 'Symfony · Twig · GSAP · EasyAdmin',
+            image: 'images/projets/Mask.jpg',
+            imageAlt: 'Aperçu du site HUMAIN',
 
-    <div class="project-info">
-        <span class="project-number">#01</span>
+            intro: 'Création d’un site artistique immersif associant design sur mesure, animations GSAP et contenus multimédias.',
 
-        <h3>HUMAIN</h3>
+            features: 'Une administration sécurisée permet à l’artiste de gérer ses photos, musiques, vidéos, événements, demandes de booking et communications par e-mail, ainsi que ses newsletters, en toute autonomie.',
 
-        <p class="project-type">
-            Site artiste · Direction artistique · Développement
-        </p>
+            adminImage: 'images/projets/humain-admin.png'
+        }
+    ] %}
 
-        <p class="project-stack">
-            Symfony · Twig · GSAP
-        </p>
+    {# Affichage automatique des projets #}
+    {% for project in projects %}
 
-        <a class="project-link" aria-disabled="true">
-            Voir le projet →
-        </a>
-    </div>
+        {% include 'components/project-card.html.twig' with {
+            project: project
+        } only %}
 
-    <div class="project-visual">
-        <img
-    src="{{ asset('images/projets/Mask.jpg') }}"
-    alt="Aperçu du site HUMAIN"
-    class="project-card__image"
->
-    </div>
+        {% include 'components/project-details.html.twig' with {
+            project: project
+        } only %}
 
-</article>
+    {% endfor %}
+
 </section>
 
 <section id="profile" class="profile">
@@ -81,6 +83,29 @@
     <h2>CONTACT</h2>
 </section>
 
+{# Lightbox commune à tous les projets #}
+<div
+    id="project-lightbox"
+    class="project-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Agrandissement d'une capture de projet"
+    hidden
+>
+    <button
+        type="button"
+        class="project-lightbox__close"
+        aria-label="Fermer l'image"
+    >
+        &times;
+    </button>
+
+    <img
+        class="project-lightbox__image"
+        src=""
+        alt=""
+    >
+</div>
     
 </main>
 

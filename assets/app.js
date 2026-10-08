@@ -13,5 +13,9 @@ import "./styles/contact.css";
 import "./animations/hero.js";
 import "./animations/projets.js";
 import "./animations/sectionTransitions.js";
+import "./styles/project-details.css";
+import "./animations/project-details.js";
+import "./styles/project-lightbox.css";
+import "./animations/project-lightbox.js";
 
 console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");

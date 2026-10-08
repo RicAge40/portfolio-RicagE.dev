@@ -1,0 +1,61 @@
+<div
+    id="project-details-{{ project.slug }}"
+    class="project-details"
+    hidden
+>
+    <div class="project-details__content">
+
+        <div class="project-details__intro">
+            <h4>{{ project.title }} — Le projet</h4>
+
+            <p>{{ project.intro }}</p>
+            <p>{{ project.features }}</p>
+        </div>
+
+        <div class="project-details__gallery">
+
+            <figure>
+               <button type="button" class="project-details__zoom" aria-label="Agrandir : {{ project.imageAlt }}">
+    <img
+        src="{{ asset(project.image) }}"
+        alt="{{ project.imageAlt }}"
+        loading="lazy"
+    >
+</button>
+                <figcaption>Le site public</figcaption>
+            </figure>
+
+            <figure>
+                {% if project.adminImage is defined and project.adminImage %}
+                    <button
+    type="button"
+    class="project-details__zoom"
+    aria-label="Agrandir l'administration de {{ project.title }}"
+>
+    <img
+        src="{{ asset(project.adminImage) }}"
+        alt="Aperçu de l'administration de {{ project.title }}"
+        loading="lazy"
+    >
+</button>
+                {% else %}
+                    <div class="project-details__placeholder">
+                        Capture de l'administration à venir
+                    </div>
+                {% endif %}
+
+                <figcaption>L'espace d'administration</figcaption>
+            </figure>
+
+        </div>
+
+        <button
+            type="button"
+            class="project-details__close"
+            aria-controls="project-details-{{ project.slug }}"
+        >
+            Réduire ↑
+        </button>
+
+    </div>
+</div>

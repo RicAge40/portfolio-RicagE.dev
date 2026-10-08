@@ -1,0 +1,56 @@
+/* LIGHTBOX DES PROJETS */
+
+.project-lightbox[hidden] {
+    display: none;
+}
+
+.project-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.94);
+}
+
+.project-lightbox__image {
+    display: block;
+    max-width: 95%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.project-lightbox__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.project-lightbox__close:focus-visible {
+    outline: 2px solid #ff8a00;
+    outline-offset: 5px;
+}
+
+@media (max-width: 768px) {
+    .project-lightbox {
+        padding: 4rem 1rem;
+    }
+
+    .project-lightbox__image {
+        max-width: 100%;
+    }
+}

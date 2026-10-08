@@ -1,0 +1,136 @@
+/* ========================================
+   PANNEAUX DÉPLIABLES DES PROJETS
+======================================== */
+
+.project-details[hidden] {
+    display: none;
+}
+
+.project-details {
+    position: relative;
+    z-index: 1;
+    max-width: 1350px;
+    margin: 7rem auto 0;
+}
+
+.project-details__content {
+    padding: 3rem;
+    border: 1px solid #333;
+    background: #101010;
+}
+
+.project-details__intro {
+    max-width: 750px;
+    margin-bottom: 3rem;
+}
+
+.project-details__intro h4 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin: 0 0 1.5rem;
+}
+
+.project-details__intro p {
+    color: #bdbdbd;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 1rem;
+}
+
+/* Captures */
+
+.project-details__gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.project-details__gallery figure {
+    margin: 0;
+}
+
+.project-details__gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.project-details__gallery figcaption {
+    margin-top: 1rem;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.project-details__placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 250px;
+    padding: 2rem;
+    border: 1px dashed #555;
+    color: #888;
+    text-align: center;
+}
+
+/* Bouton fermer */
+
+.project-details__close {
+    margin-top: 3rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.project-details__close:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.project-details__close:focus-visible {
+    outline: 2px solid #ff8a00;
+    outline-offset: 6px;
+}
+
+/* Captures agrandissables */
+
+.project-details__zoom {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+.project-details__zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+
+.project-details__zoom:hover img {
+    opacity: 0.8;
+}
+
+.project-details__zoom:focus-visible {
+    outline: 2px solid #ff8a00;
+    outline-offset: 5px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .project-details {
+        margin-top: 2rem;
+    }
+
+    .project-details__content {
+        padding: 1.5rem;
+    }
+
+    .project-details__gallery {
+        grid-template-columns: 1fr;
+    }
+}
