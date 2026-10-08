@@ -2,11 +2,23 @@ import { gsap } from "gsap";
 
 const logo = document.querySelector(".hero-logo svg");
 
-if (logo) {
-    gsap.set(".hero", {
-        visibility: "visible",
+window.addEventListener("click", () => {
+    const rect = logo.getBoundingClientRect();
+
+    console.log({
+        left: rect.left,
+        width: rect.width,
+        transform: getComputedStyle(logo).transform,
     });
+});
+
+if (logo) {
+    await document.fonts.ready;
     const timeline = gsap.timeline();
+
+    gsap.set(".hero-nav", {
+        opacity: 0,
+    });
 
     // RicagE : grossit rapidement puis se pose doucement
     timeline.from(logo, {
@@ -103,13 +115,17 @@ if (logo) {
         ">",
     );
 
-    // Apparition de la nav après la machine à écrire
+    // Apparition de la navigation après la machine à écrire
     timeline.to(".hero-nav", {
         opacity: 1,
         duration: 0.8,
         ease: "power2.out",
+        onComplete: () => {
+            gsap.set(".hero-nav", {
+                clearProps: "opacity,visibility",
+            });
+        },
     });
-
     // Pavés de fond : apparition douce avant la machine à écrire
     timeline.to(
         ".hero-bg__block",

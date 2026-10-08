@@ -6,6 +6,6 @@
 }
 
 .profile h2 {
-    font-size: clamp(3rem, 4vw, 4.5rem);
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 500;
 }

@@ -6,7 +6,11 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    visibility: hidden;
+    visibility: visible;
+}
+
+.dev {
+    font-family: "Ranade", Arial, sans-serif;
 }
 
 .hero-logo {
@@ -111,7 +115,7 @@
 /* navigation */
 
 .hero-nav {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     left: 4rem;
     right: 4rem;
@@ -121,8 +125,6 @@
     align-items: center;
     justify-content: flex-start;
     gap: clamp(5rem, 10vw, 10rem);
-
-    transform: none;
 }
 
 .hero-nav a {
