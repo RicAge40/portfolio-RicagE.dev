@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }} | RicagE.dev{% endblock %}
+
+{% block body %}
+
+<main class="project-page">
+
+    <a href="{{ path('app_home') }}#projets" class="project-page__back">
+        ← Retour aux projets
+    </a>
+
+    <div class="project-page__layout">
+
+        {# COLONNE GAUCHE : VISUELS #}
+        <div class="project-page__gallery">
+
+            <figure>
+                <img
+                    src="{{ asset(project.image) }}"
+                    alt="{{ project.imageAlt }}"
+                >
+                <figcaption>Le site public</figcaption>
+            </figure>
+
+            {% if project.adminImage is defined and project.adminImage %}
+                <figure>
+                    <img
+                        src="{{ asset(project.adminImage) }}"
+                        alt="Administration du projet {{ project.title }}"
+                        loading="lazy"
+                    >
+                    <figcaption>L'espace d'administration</figcaption>
+                </figure>
+            {% endif %}
+
+        </div>
+
+        {# COLONNE DROITE : INFORMATIONS #}
+        <aside class="project-page__info">
+
+            <aside class="project-page__info">
+
+   
+
+            <p class="project-page__intro">
+                {{ project.intro }}
+            </p>
+
+            <p class="project-page__features">
+                {{ project.features }}
+            </p>
+
+            <div class="project-page__meta">
+
+                <div>
+                    <span>TECHNOLOGIES</span>
+                    <p>{{ project.stack }}</p>
+                </div>
+
+                <div>
+                    <span>RÔLE</span>
+                    <p>Design & développement web</p>
+                </div>
+
+            </div>
+
+       
+
+   <div class="project-page__visit-wrapper">
+    {% if project.website is defined and project.website %}
+        <a
+            href="{{ project.website }}"
+            class="project-page__visit"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Visiter le site <span aria-hidden="true">↗</span>
+        </a>
+    {% else %}
+        <span class="project-page__visit project-page__visit--disabled">
+            Visiter le site <span aria-hidden="true">↗</span>
+        </span>
+    {% endif %}
+</div>
+
+        </aside>
+             <div class="project-page__scrollbar" aria-hidden="true">
+    <div class="project-page__scrollbar-thumb"></div>
+</div>
+
+    </div>
+
+</main>
+
+{% endblock %}

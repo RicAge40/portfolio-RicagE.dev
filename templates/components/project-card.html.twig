@@ -1,39 +1,28 @@
 <article class="project-card">
 
-    <div class="project-info">
+    <a
+        href="{{ path('app_project_show', { slug: project.slug }) }}"
+        class="project-link"
+        aria-label="Découvrir le projet {{ project.title }}"
+    >
+        <div class="project-visual">
+
+            {% for image in project.images %}
+                <img
+                    src="{{ asset(image) }}"
+                    alt="{% if loop.first %}Aperçu du projet {{ project.title }}{% endif %}"
+                    class="project-card__image"
+                    loading="lazy"
+                    {% if not loop.first %}aria-hidden="true"{% endif %}
+                >
+            {% endfor %}
+
+        </div>
 
         <span class="project-number">
             {{ project.number }}
         </span>
 
-        <h3>{{ project.title }}</h3>
-
-        <p class="project-type">
-            {{ project.description }}
-        </p>
-
-        <p class="project-stack">
-            {{ project.stack }}
-        </p>
-
-        <button
-            type="button"
-            class="project-link"
-            aria-expanded="false"
-            aria-controls="project-details-{{ project.slug }}"
-        >
-            Découvrir le projet →
-        </button>
-
-    </div>
-
-    <div class="project-visual">
-        <img
-            src="{{ asset(project.image) }}"
-            alt="{{ project.imageAlt }}"
-            class="project-card__image"
-            loading="lazy"
-        >
-    </div>
+    </a>
 
 </article>

@@ -1,94 +1,140 @@
+/* ========================================
+   PROJETS — RicagE.dev
+======================================== */
+
 .projects {
     position: relative;
-    min-height: 110vh;
+    min-height: 100vh;
     background: #080808;
     padding: 6rem 4rem;
     overflow: hidden;
 }
 
 .projects h2 {
-    font-size: clamp(2rem, 3.5vw, 3.25rem);
-    font-weight: 500;
-}
-
-.project-card {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    align-items: center;
-    gap: 6rem;
-
-    max-width: 1350px;
-    margin: 7rem auto 0;
-}
-
-.project-card[hidden] {
-    display: none;
-}
-
-.projects h2,
-.project-card {
     position: relative;
     z-index: 1;
-}
-.project-card__image {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.project-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.project-number {
-    color: #ff8a00;
-    font-size: 0.8rem;
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 500;
-    margin-bottom: 0.6rem;
+    margin-bottom: 6rem;
 }
 
-.project-info h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem;
+/* ========================================
+   GALERIE PROJETS — RicagE.dev
+======================================== */
+
+/* GRILLE DES PROJETS */
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 2.5rem;
+    row-gap: 4rem;
+    align-content: start;
 }
 
-.project-type,
-.project-stack {
-    margin: 0;
-    font-size: 0.9rem;
+.projects h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 2rem;
 }
 
-.project-stack {
-    margin-top: 0.5rem;
+/* CARTE PROJET */
+
+.project-card {
+    position: relative;
+    min-width: 0;
+    transition:
+        opacity 0.4s ease,
+        filter 0.4s ease;
 }
 
 .project-link {
-    margin-top: 2rem;
-    padding: 0;
-    background: none;
-    border: none;
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: left;
+    display: block;
+    color: inherit;
+    text-decoration: none;
 }
 
-.project-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 5px;
+/* MINIATURE */
+
+.project-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 3px;
 }
+
+.project-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+
+.project-card__image:first-child {
+    opacity: 1;
+}
+
+/* NUMÉRO */
+
+.project-number {
+    display: block;
+    margin-top: 0.6rem;
+    color: #ff8a00;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* HOVER */
+
+@media (hover: hover) {
+    .projects:has(.project-card:hover) .project-card:not(:hover) {
+        opacity: 0.35;
+        filter: blur(3px);
+    }
+
+    .project-card:hover {
+        z-index: 2;
+    }
+
+    .project-card:hover .project-visual {
+        transform: scale(1.03);
+        transition: transform 0.4s ease;
+    }
+}
+
+/* ACCESSIBILITÉ */
 
 .project-link:focus-visible {
     outline: 2px solid #ff8a00;
     outline-offset: 6px;
 }
 
-.project-visual {
-    width: 100%;
-    border: 1px solid #333;
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+    .projects {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 5rem 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem;
+        row-gap: 2.5rem;
+    }
+
+    .projects h2 {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-visual {
+        transition: none;
+    }
 }

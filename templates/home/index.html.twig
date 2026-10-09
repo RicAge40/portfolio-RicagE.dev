@@ -52,6 +52,11 @@
             image: 'images/projets/Mask.jpg',
             imageAlt: 'Aperçu du site HUMAIN',
 
+            images: [
+    'images/projets/Mask.jpg',
+    'images/projets/humain-admin.png'
+],
+
             intro: 'Création d’un site artistique immersif associant design sur mesure, animations GSAP et contenus multimédias.',
 
             features: 'Une administration sécurisée permet à l’artiste de gérer ses photos, musiques, vidéos, événements, demandes de booking et communications par e-mail, ainsi que ses newsletters, en toute autonomie.',
@@ -67,9 +72,7 @@
             project: project
         } only %}
 
-        {% include 'components/project-details.html.twig' with {
-            project: project
-        } only %}
+       
 
     {% endfor %}
 

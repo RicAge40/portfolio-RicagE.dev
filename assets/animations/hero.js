@@ -2,17 +2,17 @@ import { gsap } from "gsap";
 
 const logo = document.querySelector(".hero-logo svg");
 
-window.addEventListener("click", () => {
-    const rect = logo.getBoundingClientRect();
-});
-
 if (logo) {
     await document.fonts.ready;
     const timeline = gsap.timeline();
 
-    gsap.set(".hero-nav", {
-        opacity: 0,
-    });
+    const heroNav = document.querySelector(".hero-nav");
+
+    if (heroNav) {
+        gsap.set(heroNav, {
+            opacity: 0,
+        });
+    }
 
     // RicagE : grossit rapidement puis se pose doucement
     timeline.from(logo, {
