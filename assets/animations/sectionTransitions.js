@@ -1,23 +1,31 @@
 import { gsap } from "gsap";
 
-const veil = document.querySelector(".section-transition");
-const projects = document.querySelector("#projets");
-const profile = document.querySelector("#profile");
-const contact = document.querySelector("#contact");
+let cleanup = null;
 
-if (veil && projects && profile && contact) {
+function initSectionTransitions() {
+    // Nettoyer les anciens écouteurs
+    if (cleanup) {
+        cleanup();
+        cleanup = null;
+    }
+
+    // Récupérer les éléments de la page actuelle
+    const veil = document.querySelector(".section-transition");
+    const home = document.querySelector("#home");
+    const projects = document.querySelector("#projets");
+    const profile = document.querySelector("#profile");
+    const contact = document.querySelector("#contact");
+
+    // Ne rien faire sur les pages de détail
+    if (!veil || !home || !projects || !profile || !contact) return;
+
     const clamp = gsap.utils.clamp(0, 1);
 
-    // Synchronisation de l'URL avec la section affichée
-    const sections = [
-        document.querySelector("#home"),
-        projects,
-        profile,
-        contact,
-    ];
+    const sections = [home, projects, profile, contact];
 
     let currentHash = window.location.hash;
 
+    // Synchronisation de l'URL
     const updateURL = () => {
         const reference = window.innerHeight * 0.5;
 
@@ -43,6 +51,7 @@ if (veil && projects && profile && contact) {
         );
     };
 
+    // Animation du voile
     const updateVeil = () => {
         const viewportHeight = window.innerHeight;
 
@@ -53,52 +62,39 @@ if (veil && projects && profile && contact) {
         let color = "#ff8a00";
         let opacity = 0;
 
-        /*
-         * HOME → PROJETS
-         * 0 → 0.18 orange
-         */
+        // HOME → PROJETS
         if (projectsTop > 0) {
             const progress = clamp(1 - projectsTop / viewportHeight);
 
             color = "#ff8a00";
             opacity = progress * 0.18;
+
+            // PROJETS
         } else if (profileTop >= viewportHeight) {
-            /*
-             * PROJETS
-             * Orange stable
-             */
             color = "#ff8a00";
             opacity = 0.18;
+
+            // PROJETS → PROFIL
         } else if (profileTop > 0) {
-            /*
-             * PROJETS → PROFIL
-             * 0.18 → 0
-             */
             const progress = clamp(1 - profileTop / viewportHeight);
 
             color = "#ff8a00";
             opacity = 0.18 * (1 - progress);
+
+            // PROFIL
         } else if (contactTop >= viewportHeight) {
-            /*
-             * PROFIL
-             * Noir
-             */
             color = "#ff8a00";
             opacity = 0;
+
+            // PROFIL → CONTACT
         } else if (contactTop > 0) {
-            /*
-             * PROFIL → CONTACT
-             * 0 → 0.16 rouge
-             */
             const progress = clamp(1 - contactTop / viewportHeight);
 
             color = "#d40000";
             opacity = progress * 0.16;
+
+            // CONTACT
         } else {
-            /*
-             * CONTACT
-             * Rouge stable
-             */
             color = "#d40000";
             opacity = 0.16;
         }
@@ -118,11 +114,13 @@ if (veil && projects && profile && contact) {
     window.addEventListener("resize", updatePage);
     window.addEventListener("hashchange", updatePage);
 
-    updatePage();
+    // Navigation fluide
+    const navLinks = document.querySelectorAll('.hero-nav a[href^="#"]');
 
-    // Navigation fluide vers les sections
-    document.querySelectorAll('.hero-nav a[href^="#"]').forEach((link) => {
-        link.addEventListener("click", (event) => {
+    const linkHandlers = [];
+
+    navLinks.forEach((link) => {
+        const handler = (event) => {
             const target = document.querySelector(link.getAttribute("href"));
 
             if (!target) return;
@@ -133,6 +131,38 @@ if (veil && projects && profile && contact) {
                 top: target.getBoundingClientRect().top + window.scrollY,
                 behavior: "smooth",
             });
-        });
+        };
+
+        link.addEventListener("click", handler);
+
+        linkHandlers.push({ link, handler });
     });
+
+    // Mise à jour après restauration du scroll par Turbo
+    requestAnimationFrame(updatePage);
+
+    // Fonction de nettoyage
+    cleanup = () => {
+        window.removeEventListener("scroll", updatePage);
+        window.removeEventListener("resize", updatePage);
+        window.removeEventListener("hashchange", updatePage);
+
+        linkHandlers.forEach(({ link, handler }) => {
+            link.removeEventListener("click", handler);
+        });
+    };
 }
+
+// Chargement initial
+initSectionTransitions();
+
+// Navigation Symfony Turbo
+document.addEventListener("turbo:load", initSectionTransitions);
+
+// Nettoyage avant mise en cache
+document.addEventListener("turbo:before-cache", () => {
+    if (cleanup) {
+        cleanup();
+        cleanup = null;
+    }
+});
