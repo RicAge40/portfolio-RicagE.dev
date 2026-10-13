@@ -18,5 +18,6 @@ import "./styles/project-lightbox.css";
 import "./animations/project-lightbox.js";
 import "./styles/project-page.css";
 import "./animations/project-scrollbar.js";
+import "./animations/project-panels.js";
 
 console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");
