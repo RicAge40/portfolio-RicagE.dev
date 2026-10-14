@@ -5,9 +5,10 @@
 .projects {
     position: relative;
     min-height: 100vh;
-    background: #080808;
     padding: 6rem 4rem;
+    background: #080808;
     overflow: hidden;
+
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2.5rem;
@@ -19,23 +20,31 @@
     position: relative;
     z-index: 1;
     grid-column: 1 / -1;
+    width: fit-content;
+    margin-bottom: 2rem;
+
     font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 500;
-    margin-bottom: 2rem;
 }
 
-.project-card__identity {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.2rem;
-}
-.project-card__logo {
-    display: block;
-    width: 100px;
-    height: auto;
-    max-height: 40px;
-    object-fit: contain;
+/* Coup de pinceau orange */
+
+.projects h2::before {
+    content: "";
+    position: absolute;
+
+    left: -12px;
+    right: -18px;
+    top: 45%;
+
+    height: 65%;
+    background: rgba(255, 138, 0, 0.55);
+
+    border-radius: 12px;
+    transform: rotate(-4deg);
+
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* ========================================
@@ -45,18 +54,46 @@
 .project-card {
     position: relative;
     min-width: 0;
+
     transition:
         opacity 0.4s ease,
         filter 0.4s ease;
 }
 
-/* BOUTON MINIATURE */
+/* Identité du projet */
+
+.project-card__identity {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.project-card__logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.project-number {
+    display: block;
+    margin-top: 0.6rem;
+
+    color: #ff8a00;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Bouton de la carte */
 
 .project-card__trigger {
     display: block;
     width: 100%;
     padding: 0;
     border: 0;
+
     background: transparent;
     color: inherit;
     text-align: left;
@@ -64,7 +101,9 @@
     cursor: pointer;
 }
 
-/* MINIATURE */
+/* ========================================
+   CAPTURES DU PROJET
+======================================== */
 
 .project-visual {
     position: relative;
@@ -72,7 +111,12 @@
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 3px;
-    transition: transform 0.4s ease;
+
+    filter: sepia(0.55) saturate(0.7);
+
+    transition:
+        filter 0.6s ease,
+        transform 0.4s ease;
 }
 
 .project-card__image {
@@ -88,14 +132,12 @@
     opacity: 1;
 }
 
-/* NUMÉRO */
+/* Couleurs originales au survol ou à l'ouverture */
 
-.project-number {
-    display: block;
-    margin-top: 0.6rem;
-    color: #ff8a00;
-    font-size: 0.75rem;
-    font-weight: 500;
+.project-card:hover .project-visual,
+.project-card.is-open .project-visual,
+.project-card:focus-within .project-visual {
+    filter: none;
 }
 
 /* ========================================
@@ -106,36 +148,18 @@
     position: relative;
     min-width: 0;
     padding: 2rem;
+
     background: transparent;
-    border-left: none;
     isolation: isolate;
 }
 
-/* Trait graphique RicagE */
-
-.project-card__details::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: -15px;
-    width: 75%;
-    height: 55px;
-    background: rgba(255, 138, 0, 0.65);
-    transform: rotate(-5deg);
-    z-index: -1;
-    pointer-events: none;
-    border-radius: 18px;
-}
+/* Rectangle orange RicagE */
 
 .project-card__details[hidden] {
     display: none;
 }
 
-.project-card__details-inner h3 {
-    margin: 0 0 1.5rem;
-    font-size: clamp(1.8rem, 3vw, 3rem);
-    font-weight: 500;
-}
+/* Textes */
 
 .project-card__details-inner > p {
     margin-bottom: 1.5rem;
@@ -148,6 +172,7 @@
 
 .project-card__meta h4 {
     margin-bottom: 0.5rem;
+
     color: #ff8a00;
     font-size: 0.75rem;
     font-weight: 600;
@@ -158,12 +183,16 @@
     line-height: 1.5;
 }
 
+/* Lien vers le site */
+
 .project-card__visit {
     display: inline-block;
     margin-top: 2.5rem;
+
     color: #fff;
     text-decoration: none;
     border-bottom: 1px solid currentColor;
+
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -175,33 +204,15 @@
 
 .project-card.is-open {
     grid-column: span 2;
+
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
 }
 
-/* Couleurs des captures au survol*/
-
-/* Couleurs des captures */
-
-.project-visual {
-    position: relative;
-    isolation: isolate;
-    filter: sepia(0.55) saturate(0.7);
-    transition:
-        filter 0.6s ease,
-        transform 0.4s ease;
-}
-
-.project-card:hover .project-visual,
-.project-card.is-open .project-visual,
-.project-card:focus-within .project-visual {
-    filter: none;
-}
-
 /* ========================================
-   HOVER
+   INTERACTIONS
 ======================================== */
 
 @media (hover: hover) {
@@ -215,9 +226,7 @@
     }
 }
 
-/* ========================================
-   ACCESSIBILITÉ
-======================================== */
+/* Accessibilité clavier */
 
 .project-card__trigger:focus-visible {
     outline: 2px solid #ff8a00;
@@ -227,6 +236,8 @@
 /* ========================================
    RESPONSIVE
 ======================================== */
+
+/* Tablette */
 
 @media (max-width: 1024px) {
     .projects {
@@ -238,6 +249,8 @@
         grid-column: 1 / -1;
     }
 }
+
+/* Mobile */
 
 @media (max-width: 600px) {
     .projects {
@@ -259,6 +272,8 @@
         padding: 1.5rem;
     }
 }
+
+/* Réduction des animations */
 
 @media (prefers-reduced-motion: reduce) {
     .project-card,
