@@ -1,3 +1,8 @@
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+
+gsap.registerPlugin(Flip);
+
 function initProjectPanels() {
     document.querySelectorAll(".project-card").forEach((card) => {
         const trigger = card.querySelector(".project-card__trigger");
@@ -10,6 +15,12 @@ function initProjectPanels() {
         card.dataset.panelInitialized = "true";
 
         function openPanel() {
+            if (card.classList.contains("is-open")) return;
+
+            // Capturer les positions avant modification
+            const cards = document.querySelectorAll(".project-card");
+            const state = Flip.getState(cards);
+
             // Fermer les autres projets
             document
                 .querySelectorAll(".project-card.is-open")
@@ -25,20 +36,40 @@ function initProjectPanels() {
                         );
 
                         if (otherDetails) otherDetails.hidden = true;
-                        if (otherTrigger)
+                        if (otherTrigger) {
                             otherTrigger.setAttribute("aria-expanded", "false");
+                        }
                     }
                 });
 
+            // Ouvrir le projet
             details.hidden = false;
             card.classList.add("is-open");
             trigger.setAttribute("aria-expanded", "true");
+
+            // Animer le changement de disposition
+            Flip.from(state, {
+                duration: 0.7,
+                ease: "power2.inOut",
+                absolute: false,
+            });
         }
 
         function closePanel() {
+            if (!card.classList.contains("is-open")) return;
+
+            const cards = document.querySelectorAll(".project-card");
+            const state = Flip.getState(cards);
+
             details.hidden = true;
             card.classList.remove("is-open");
             trigger.setAttribute("aria-expanded", "false");
+
+            Flip.from(state, {
+                duration: 0.7,
+                ease: "power2.inOut",
+                absolute: false,
+            });
         }
 
         // Survol sur ordinateur

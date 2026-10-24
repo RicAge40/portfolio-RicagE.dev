@@ -31,4 +31,7 @@ return [
     'gsap/ScrollTrigger' => [
         'version' => '3.15.0',
     ],
+    'gsap/Flip' => [
+        'version' => '3.15.0',
+    ],
 ];
