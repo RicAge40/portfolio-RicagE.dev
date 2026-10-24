@@ -53,3 +53,25 @@ body {
     z-index: 999;
     opacity: 0;
 }
+.section-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 6rem;
+}
+
+.section-heading h2 {
+    margin-bottom: 0;
+}
+
+.section-mini-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+}
+
+.section-mini-nav__link--projects::before {
+    background: rgba(255, 138, 0, 0.55);
+}

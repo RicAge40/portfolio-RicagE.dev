@@ -21,7 +21,6 @@
     z-index: 1;
     grid-column: 1 / -1;
     width: fit-content;
-    margin-bottom: 2rem;
 
     font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 500;
@@ -279,5 +278,85 @@
     .project-card,
     .project-visual {
         transition: none;
+    }
+}
+
+/* Navigation intégrée au titre PROJETS */
+
+.projects .section-heading-nav {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.projects .section-heading-nav h2 {
+    grid-column: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.section-mini-nav {
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+}
+
+.section-mini-nav__link {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-decoration: none;
+    isolation: isolate;
+}
+
+.section-mini-nav__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 4px;
+    transform: rotate(-3deg);
+}
+
+.section-mini-nav__link + .section-mini-nav__link {
+    margin-left: -0.35rem;
+}
+
+.section-mini-nav__link:hover,
+.section-mini-nav__link:focus-visible {
+    transform: rotate(0deg) translateY(-5px);
+    z-index: 5;
+}
+
+/* ACCUEIL */
+.section-mini-nav__link--home::before {
+    background: #ff8a00;
+}
+
+/* PROFIL */
+.section-mini-nav__link--profile::before {
+    background: #a83e21;
+}
+
+/* CONTACT */
+.section-mini-nav__link--contact::before {
+    background: #8f0f01;
+}
+
+@media (max-width: 600px) {
+    .projects .section-heading-nav {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .section-mini-nav {
+        flex-wrap: wrap;
+        padding-left: 0;
     }
 }

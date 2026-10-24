@@ -23,7 +23,7 @@ final class ProjectController extends AbstractController
                 'intro' => 'Création d’un site artistique immersif associant design sur mesure, animations GSAP et contenus multimédias.',
                 'features' => 'Une administration sécurisée permet à l’artiste de gérer ses photos, musiques, vidéos, événements, demandes de booking et newsletters en toute autonomie.',
                 'adminImage' => 'images/projets/humain-admin.png',
-                'website' => null,
+                'website' => 'https://humainmusic.fr',
             ],
         ];
 

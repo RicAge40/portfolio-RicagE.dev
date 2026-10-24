@@ -39,7 +39,25 @@
 
     <section id="projets" class="projects">
 
+    <div class="section-heading-nav">
+
     <h2>PROJETS</h2>
+
+    <nav class="section-mini-nav" aria-label="Navigation entre les sections">
+        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">
+            ACCUEIL
+        </a>
+
+        <a href="#profile" class="section-mini-nav__link section-mini-nav__link--profile">
+            PROFIL
+        </a>
+
+        <a href="#contact" class="section-mini-nav__link section-mini-nav__link--contact">
+            CONTACT
+        </a>
+    </nav>
+
+</div>
 
     {# Données du projet HUMAIN #}
     {% set projects = [
@@ -95,7 +113,54 @@
         <div class="profile-block profile-block--3"></div>
     </div>
 
+    <div class="section-heading">
     <h2>PROFIL</h2>
+
+    <nav class="section-mini-nav" aria-label="Navigation depuis Profil">
+        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">ACCUEIL</a>
+        <a href="#projets" class="section-mini-nav__link section-mini-nav__link--projects">PROJETS</a>
+        <a href="#contact" class="section-mini-nav__link section-mini-nav__link--contact">CONTACT</a>
+    </nav>
+</div>
+
+     {# =====================================
+       PHOTO + PRÉSENTATION
+    ===================================== #}
+
+    <div class="profile-content">
+
+        {# Emplacement de la future photo #}
+        <div class="profile-photo">
+    <img
+        src="{{ asset('images/image-profile.jfif') }}"
+        alt="Portrait du développeur RicagE.dev"
+        loading="lazy"
+    >
+</div>
+<div class="profile-intro">
+
+            <h3>Du terrain au numérique.</h3>
+
+            <p>
+                Développeur web orienté front-end, je conçois et développe
+                des sites internet modernes, accessibles et adaptés
+                aux besoins de chaque projet.
+            </p>
+
+            <p>
+                Du site vitrine simple et efficace à l'expérience web
+                interactive et animée, j'accorde une attention particulière
+                au design, à la fluidité et à l'expérience utilisateur.
+            </p>
+
+            <p>
+                Fort de mon expérience dans les métiers techniques,
+                je comprends les réalités du terrain et les besoins
+                concrets des artisans, indépendants et petites entreprises.
+            </p>
+
+        </div>
+         </div>
 
     
 
@@ -171,45 +236,54 @@
 
 </div>
 
-    {# =====================================
-       PHOTO + PRÉSENTATION
-    ===================================== #}
+   
 
-    <div class="profile-content">
-
-        {# Emplacement de la future photo #}
-        <div class="profile-photo" aria-hidden="true"></div>
-
-        <div class="profile-intro">
-
-            <h3>Du terrain au numérique.</h3>
-
-            <p>
-                Développeur web orienté front-end, je conçois et développe
-                des sites internet modernes, accessibles et adaptés
-                aux besoins de chaque projet.
-            </p>
-
-            <p>
-                Du site vitrine simple et efficace à l'expérience web
-                interactive et animée, j'accorde une attention particulière
-                au design, à la fluidité et à l'expérience utilisateur.
-            </p>
-
-            <p>
-                Fort de mon expérience dans les métiers techniques,
-                je comprends les réalités du terrain et les besoins
-                concrets des artisans, indépendants et petites entreprises.
-            </p>
-
-        </div>
+        
 
     </div>
 
 </section>
 
 <section id="contact" class="contact">
+
+    <div class="section-heading">
     <h2>CONTACT</h2>
+
+    <nav class="section-mini-nav" aria-label="Navigation depuis Contact">
+        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">ACCUEIL</a>
+        <a href="#projets" class="section-mini-nav__link section-mini-nav__link--projects">PROJETS</a>
+        <a href="#profile" class="section-mini-nav__link section-mini-nav__link--profile">PROFIL</a>
+    </nav>
+</div>
+
+    <div class="contact-content">
+
+        <h3>
+    <span>Un projet en tête ?</span>
+    <span class="contact-highlight">Parlons-en.</span>
+</h3>
+
+        <a href="mailto:ricage.dev@gmail.com"
+   class="contact-email">
+    ricage.dev@gmail.com ↗
+</a>
+
+        <div class="contact-socials">
+            <a href="https://github.com/RicAge40"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="GitHub de RicagE.dev (nouvel onglet)">
+    GITHUB ↗
+</a>
+            <a href="#" aria-label="LinkedIn">LINKEDIN ↗</a>
+        </div>
+
+    </div>
+
+    <footer class="contact-footer">
+        <span>© {{ "now"|date("Y") }} RicagE.dev</span>
+    </footer>
+
 </section>
 
 {# Lightbox commune à tous les projets #}

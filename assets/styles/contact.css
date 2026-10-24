@@ -1,11 +1,132 @@
+/* ========================================
+   CONTACT
+======================================== */
+
 .contact {
     position: relative;
-    min-height: 100vh;
+    min-height: 100svh;
+    padding: 6rem 4rem 2rem;
     background: #080808;
-    padding: 6rem 4rem;
+
+    display: flex;
+    flex-direction: column;
 }
 
+/* Titre CONTACT */
+
 .contact h2 {
+    position: relative;
+    width: fit-content;
+    isolation: isolate;
+
     font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 500;
+}
+
+.contact h2::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    bottom: -8px;
+    width: calc(100% + 24px);
+    height: 42px;
+
+    background: #8f0f01;
+    border-radius: 12px;
+    transform: rotate(-4deg);
+    z-index: -1;
+}
+
+/* Contenu central */
+
+.contact-content {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    gap: 2.5rem;
+}
+
+.contact-content h3 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Adresse e-mail */
+
+.contact-email {
+    color: #fff;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    text-decoration: none;
+    border-bottom: 1px solid #8f0f01;
+    padding-bottom: 0.5rem;
+
+    transition: color 0.3s ease;
+}
+
+.contact-email:hover {
+    color: #8f0f01;
+}
+
+/* Réseaux sociaux */
+
+.contact-socials {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-socials a {
+    color: #fff;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.contact-socials a:hover {
+    color: #8f0f01;
+}
+
+/* Footer */
+
+.contact-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 4rem 1.5rem 2rem;
+    }
+
+    .contact-content {
+        gap: 2rem;
+    }
+
+    .contact-socials {
+        gap: 2rem;
+    }
+}
+/* Accroche CONTACT */
+
+.contact-content h3 span {
+    display: block;
+}
+
+.contact-content h3 .contact-highlight {
+    color: #ff4a30;
+    font-size: 1em;
+    line-height: 1.2;
 }
