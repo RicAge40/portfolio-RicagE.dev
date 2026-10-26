@@ -11,6 +11,7 @@ import "./styles/projects.css";
 import "./styles/profile.css";
 import "./styles/contact.css";
 import "./animations/hero.js";
+import "./styles/footer.css";
 import "./animations/projets.js";
 import "./animations/sectionTransitions.js";
 import "./styles/project-details.css";

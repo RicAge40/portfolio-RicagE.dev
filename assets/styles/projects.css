@@ -213,7 +213,11 @@
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     gap: 3rem;
-    align-items: center;
+    align-items: start;
+}
+
+.project-card.is-open .project-card__details {
+    align-self: center;
 }
 
 /* ========================================
@@ -233,7 +237,7 @@
 
 /* Accessibilité clavier */
 
-.project-card__trigger:focus-visible {
+.project-card__trigger:focus-visible:not(:active) {
     outline: 2px solid #ff8a00;
     outline-offset: 6px;
 }
