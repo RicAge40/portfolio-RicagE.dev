@@ -76,3 +76,115 @@ main > section {
     position: relative;
     z-index: 1;
 }
+
+/* ========================================
+   NAVIGATION MOBILE — RicAgE
+======================================== */
+
+.mobile-menu-toggle,
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    /* Masquer les navigations classiques */
+    .hero .hero-nav,
+    .projects .section-mini-nav,
+    .profile .section-mini-nav,
+    .contact .section-mini-nav {
+        display: none;
+    }
+
+    /* Burger */
+    .mobile-menu-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 1.5rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 30px;
+        height: 5px;
+        border-radius: 3px;
+        transform: rotate(-4deg);
+    }
+
+    .mobile-menu-toggle span:nth-child(1) {
+        background: #ff8a00;
+    }
+
+    .mobile-menu-toggle span:nth-child(2) {
+        background: #b54a16;
+    }
+
+    .mobile-menu-toggle span:nth-child(3) {
+        background: #d40000;
+    }
+
+    /* Menu déroulant */
+    .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .mobile-menu a {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .mobile-menu {
+        transition:
+            opacity 0.4s ease,
+            visibility 0.4s ease;
+    }
+
+    .mobile-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .mobile-menu a:nth-child(1) {
+        background: #ff8a00;
+    }
+    .mobile-menu a:nth-child(2) {
+        background: #b54a16;
+    }
+    .mobile-menu a:nth-child(3) {
+        background: #d40000;
+    }
+    .mobile-menu a:nth-child(4) {
+        background: #ff8a00;
+    }
+
+    .mobile-menu a {
+        padding: 0.15rem 0.8rem;
+        border-radius: 4px;
+        transform: rotate(-2deg);
+    }
+
+    .section-heading h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+}

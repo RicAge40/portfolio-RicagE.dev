@@ -119,71 +119,98 @@
 .hero-nav {
     opacity: 1;
     position: absolute;
-    left: 4rem;
-    right: 4rem;
-    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    bottom: 4.5rem;
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: clamp(5rem, 10vw, 10rem);
+    justify-content: center;
+    gap: clamp(3rem, 6vw, 6rem);
 }
 
 .hero-nav a {
     position: relative;
-    color: #bdbdbd;
+    z-index: 0;
+    color: #fff;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
+    padding: 0.2rem 0.5rem;
 }
 
-.hero-nav a::after {
+.hero-nav a {
+    transition: scale 0.3s ease;
+}
+
+.hero-nav a:hover {
+    scale: 1.08;
+}
+.hero-nav a::before {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -5px;
+    left: -8px;
+    right: -8px;
+    top: 50%;
+    height: 16px;
 
-    width: 100%;
-    height: 1px;
-    background: currentColor;
+    background: #ff8a00;
+    border-radius: 4px 2px 5px 3px;
 
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
+    transform: translateY(-50%) rotate(-3deg);
+    z-index: -1;
+}
+.hero-nav a:nth-child(2)::before {
+    background: #a84a00;
 }
 
-.hero-nav a:hover::after {
-    transform: scaleX(1);
+.hero-nav a:nth-child(3)::before {
+    background: #d40000;
 }
 /* ========================================
    HERO — MOBILE
 ======================================== */
 
 @media (max-width: 600px) {
-    .hero-logo svg {
-        width: 260px;
-        max-width: 100%;
-    }
-
     .hero-logo {
         width: 100%;
-        margin-inline: auto;
-
+        max-width: 100%;
+        padding-inline: 1rem;
+        align-items: flex-end;
+        justify-content: center;
         transform-origin: center;
     }
+
+    .hero-logo svg {
+        width: min(65vw, 260px);
+        height: auto;
+        flex-shrink: 1;
+    }
+
     .dev {
-        font-size: 1.5rem;
-        margin-bottom: 3.5rem;
+        font-size: clamp(1rem, 5vw, 1.5rem);
+        margin-left: 0.15em;
+        margin-bottom: 3rem;
+        flex-shrink: 0;
     }
     .hero-content {
         width: 90%;
+        max-width: 340px;
         margin-top: 2.5rem;
         transform: none;
         text-align: center;
+        overflow-wrap: anywhere;
     }
 
     .hero-content h1 {
         font-size: 1.5rem;
+        line-height: 1.3;
+        max-width: 100%;
+        text-wrap: balance;
+    }
+
+    .hero-content h1 span {
+        display: inline;
     }
 
     .hero-content p {
@@ -199,37 +226,9 @@
     .hero-nav {
         left: 0;
         right: 0;
-        bottom: 1.5rem;
-
+        bottom: 4rem;
         width: 100%;
         justify-content: center;
         gap: 2.5rem;
-    }
-    .hero-nav a {
-        position: relative;
-        z-index: 0;
-        color: #fff;
-    }
-
-    .hero-nav a::before {
-        content: "";
-        position: absolute;
-        left: -8px;
-        right: -8px;
-        top: 50%;
-        height: 16px;
-
-        background: #ff8a00;
-        border-radius: 4px 2px 5px 3px;
-
-        transform: translateY(-50%) rotate(-3deg);
-        z-index: -1;
-    }
-    .hero-nav a:nth-child(2)::before {
-        background: #a84a00;
-    }
-
-    .hero-nav a:nth-child(3)::before {
-        background: #d40000;
     }
 }

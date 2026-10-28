@@ -9,7 +9,7 @@
     background: transparent;
     overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: 2.5rem;
     row-gap: 4rem;
     align-content: start;
@@ -262,9 +262,9 @@
 
 @media (max-width: 600px) {
     .projects {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 4rem 1.5rem;
-        row-gap: 2.5rem;
+        row-gap: 3rem;
     }
 
     .projects h2 {
@@ -278,6 +278,19 @@
 
     .project-card__details {
         padding: 1.5rem;
+    }
+    .projects .section-heading-nav {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .section-mini-nav {
+        flex-wrap: wrap;
+        padding-left: 0;
+    }
+    .project-card__details-inner {
+        font-size: 0.85rem;
+        line-height: 1.6;
     }
 }
 
@@ -356,16 +369,4 @@
 /* CONTACT */
 .section-mini-nav__link--contact::before {
     background: #8f0f01;
-}
-
-@media (max-width: 600px) {
-    .projects .section-heading-nav {
-        flex-wrap: wrap;
-        gap: 1.5rem;
-    }
-
-    .section-mini-nav {
-        flex-wrap: wrap;
-        padding-left: 0;
-    }
 }

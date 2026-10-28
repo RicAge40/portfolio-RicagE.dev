@@ -1,168 +1,208 @@
 import { gsap } from "gsap";
 
-const logo = document.querySelector(".hero-logo svg");
+let heroContext = null;
+let heroInitialization = 0;
 
-if (logo) {
+async function initHero() {
+    const initialization = ++heroInitialization;
+
+    // Nettoyer les animations précédentes
+    if (heroContext) {
+        heroContext.revert();
+        heroContext = null;
+    }
+
+    const logo = document.querySelector(".hero-logo svg");
+
+    // Ne rien faire sur les pages de détail
+    if (!logo) return;
+
     await document.fonts.ready;
-    const timeline = gsap.timeline();
 
-    const heroNav = document.querySelector(".hero-nav");
+    // Éviter d'initialiser une ancienne page après une navigation Turbo
+    if (initialization !== heroInitialization || !logo.isConnected) return;
 
-    if (heroNav) {
-        gsap.set(heroNav, {
+    heroContext = gsap.context(() => {
+        const timeline = gsap.timeline();
+
+        const heroNav = document.querySelector(".hero-nav");
+
+        if (heroNav) {
+            gsap.set(heroNav, {
+                opacity: 0,
+            });
+        }
+
+        // RicagE : grossit rapidement puis se pose doucement
+        timeline.from(logo, {
+            scale: 0.05,
             opacity: 0,
+            duration: 1.8,
+            ease: "power3.out",
+            transformOrigin: "50% 50%",
         });
-    }
 
-    // RicagE : grossit rapidement puis se pose doucement
-    timeline.from(logo, {
-        scale: 0.05,
-        opacity: 0,
-        duration: 1.8,
-        ease: "power3.out",
-        transformOrigin: "50% 50%",
-    });
+        // Pavé gauche
+        timeline.from(
+            "#block-left",
+            {
+                y: -window.innerHeight,
+                duration: 2,
+                ease: "power1.in",
+            },
+            0.45,
+        );
 
-    // Pavé gauche
-    timeline.from(
-        "#block-left",
-        {
-            y: -window.innerHeight,
-            duration: 2,
-            ease: "power1.in",
-        },
-        0.45,
-    );
+        // Pavé central
+        timeline.from(
+            "#block-center",
+            {
+                y: window.innerHeight,
+                duration: 2,
+                ease: "power1.in",
+            },
+            0.65,
+        );
 
-    // Pavé central
-    timeline.from(
-        "#block-center",
-        {
-            y: window.innerHeight,
-            duration: 2,
-            ease: "power1.in",
-        },
-        0.65,
-    );
+        // Pavé droit
+        timeline.from(
+            "#block-right",
+            {
+                y: window.innerHeight,
+                duration: 2,
+                ease: "power1.in",
+            },
+            0.85,
+        );
 
-    // Pavé droit
-    timeline.from(
-        "#block-right",
-        {
-            y: window.innerHeight,
-            duration: 2,
-            ease: "power1.in",
-        },
-        0.85,
-    );
+        // .dev
+        timeline.from(
+            ".dev",
+            {
+                opacity: 0,
+                x: -25,
+                duration: 1.3,
+                ease: "power2.out",
+            },
+            2.7,
+        );
 
-    // .dev
-    timeline.from(
-        ".dev",
-        {
-            opacity: 0,
-            x: -25,
-            duration: 1.3,
+        // Machine à écrire
+        const title = document.querySelector(".hero-content h1");
+        const text = document.querySelector(".hero-content p");
+
+        function prepareTypewriter(element) {
+            const content = element.textContent.replace(/\s+/g, " ").trim();
+
+            element.innerHTML = [...content]
+                .map((char) => `<span>${char === " " ? "&nbsp;" : char}</span>`)
+                .join("");
+
+            gsap.set(element.querySelectorAll("span"), {
+                opacity: 0,
+            });
+        }
+
+        prepareTypewriter(title);
+        prepareTypewriter(text);
+
+        // Du métier au digital.
+        timeline.to(
+            title.querySelectorAll("span"),
+            {
+                opacity: 1,
+                duration: 0.01,
+                stagger: 0.055,
+            },
+            3.5,
+        );
+
+        // Je conçois...
+        timeline.to(
+            text.querySelectorAll("span"),
+            {
+                opacity: 1,
+                duration: 0.01,
+                stagger: 0.025,
+            },
+            ">",
+        );
+
+        // Apparition de la navigation
+        timeline.to(".hero-nav", {
+            opacity: 1,
+            duration: 0.8,
             ease: "power2.out",
-        },
-        2.7,
-    );
-
-    // Machine à écrire
-    const title = document.querySelector(".hero-content h1");
-    const text = document.querySelector(".hero-content p");
-
-    function prepareTypewriter(element) {
-        const content = element.textContent.replace(/\s+/g, " ").trim();
-
-        element.innerHTML = [...content]
-            .map((char) => `<span>${char === " " ? "&nbsp;" : char}</span>`)
-            .join("");
-
-        gsap.set(element.querySelectorAll("span"), {
-            opacity: 0,
+            onComplete: () => {
+                gsap.set(".hero-nav", {
+                    clearProps: "opacity,visibility",
+                });
+            },
         });
-    }
 
-    prepareTypewriter(title);
-    prepareTypewriter(text);
+        // Pavés de fond
+        timeline.to(
+            ".hero-bg__block",
+            {
+                opacity: 0.18,
+                duration: 1.4,
+                ease: "sine.inOut",
+                stagger: 0.15,
+                onComplete: startBackgroundAnimation,
+            },
+            2.6,
+        );
 
-    // Du métier au digital.
-    timeline.to(
-        title.querySelectorAll("span"),
-        {
-            opacity: 1,
-            duration: 0.01,
-            stagger: 0.055,
-        },
-        3.5,
-    );
+        function startBackgroundAnimation() {
+            const bgBlocks = document.querySelectorAll(".hero-bg__block");
 
-    // Je conçois...
-    timeline.to(
-        text.querySelectorAll("span"),
-        {
-            opacity: 1,
-            duration: 0.01,
-            stagger: 0.025,
-        },
-        ">",
-    );
+            const movements = [
+                { x: 1050, y: 300, duration: 18 },
+                { x: 650, y: -750, duration: 22 },
+                { x: -1100, y: 420, duration: 25 },
+            ];
 
-    // Apparition de la navigation après la machine à écrire
-    timeline.to(".hero-nav", {
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        onComplete: () => {
-            gsap.set(".hero-nav", {
-                clearProps: "opacity,visibility",
+            bgBlocks.forEach((block, index) => {
+                const move = movements[index];
+
+                gsap.to(block, {
+                    x: move.x,
+                    y: move.y,
+                    duration: move.duration,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                });
+
+                gsap.to(block, {
+                    rotation: () => gsap.utils.random(-25, 60),
+                    duration: () => gsap.utils.random(6, 10),
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                    repeatRefresh: true,
+                    transformOrigin: "50% 50%",
+                });
             });
-        },
+        }
     });
-    // Pavés de fond : apparition douce avant la machine à écrire
-    timeline.to(
-        ".hero-bg__block",
-        {
-            opacity: 0.18,
-            duration: 1.4,
-            ease: "sine.inOut",
-            stagger: 0.15,
-            onComplete: startBackgroundAnimation,
-        },
-        2.6,
-    );
+}
 
-    function startBackgroundAnimation() {
-        const bgBlocks = document.querySelectorAll(".hero-bg__block");
+function cleanupHero() {
+    // Annuler une initialisation encore en attente
+    heroInitialization++;
 
-        const movements = [
-            { x: 1050, y: 300, duration: 18 },
-            { x: 650, y: -750, duration: 22 },
-            { x: -1100, y: 420, duration: 25 },
-        ];
-
-        bgBlocks.forEach((block, index) => {
-            const move = movements[index];
-
-            gsap.to(block, {
-                x: move.x,
-                y: move.y,
-
-                duration: move.duration,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
-            gsap.to(block, {
-                rotation: () => gsap.utils.random(-25, 60),
-                duration: () => gsap.utils.random(6, 10),
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-                repeatRefresh: true,
-                transformOrigin: "50% 50%",
-            });
-        });
+    if (heroContext) {
+        heroContext.revert();
+        heroContext = null;
     }
 }
+
+// Premier chargement
+initHero();
+
+// Navigation Symfony Turbo
+document.addEventListener("turbo:load", initHero);
+
+// Nettoyage avant mise en cache Turbo
+document.addEventListener("turbo:before-cache", cleanupHero);
