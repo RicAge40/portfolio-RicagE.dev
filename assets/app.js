@@ -20,6 +20,3 @@ import "./animations/project-lightbox.js";
 import "./styles/project-page.css";
 import "./animations/project-scrollbar.js";
 import "./animations/project-panels.js";
-import { initProfileBlocks } from "./animations/profile-blocks.js";
-
-initProfileBlocks();

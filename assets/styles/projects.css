@@ -6,9 +6,8 @@
     position: relative;
     min-height: 100vh;
     padding: 6rem 4rem;
-    background: #080808;
+    background: transparent;
     overflow: hidden;
-
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 2.5rem;

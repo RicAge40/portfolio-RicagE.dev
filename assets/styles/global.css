@@ -44,15 +44,6 @@ body {
     overflow-x: hidden;
 }
 
-.section-transition {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0;
-}
 .section-heading {
     display: flex;
     align-items: center;
@@ -74,4 +65,14 @@ body {
 
 .section-mini-nav__link--projects::before {
     background: rgba(255, 138, 0, 0.55);
+}
+
+main {
+    position: relative;
+    isolation: isolate;
+}
+
+main > section {
+    position: relative;
+    z-index: 1;
 }

@@ -6,48 +6,9 @@
     position: relative;
     min-height: 100vh;
     padding: 6rem 4rem;
-    background: #080808;
+    background: transparent;
     isolation: isolate;
     overflow: hidden;
-}
-
-/* ========================================
-   PAVÉS FLOTTANTS — PROFIL
-======================================== */
-
-.profile-block {
-    position: absolute;
-    border-radius: 120px;
-    opacity: 0.22;
-    filter: blur(7px);
-    will-change: transform;
-}
-
-.profile-block--1 {
-    width: 350px;
-    height: 900px;
-    left: -180px;
-    top: -250px;
-    background: #f58d06;
-    transform: rotate(-20deg);
-}
-
-.profile-block--2 {
-    width: 500px;
-    height: 800px;
-    left: 35%;
-    top: 30%;
-    background: #8f0f01;
-    transform: rotate(15deg);
-}
-
-.profile-block--3 {
-    width: 400px;
-    height: 1000px;
-    right: -200px;
-    bottom: -300px;
-    background: #fdb85d;
-    transform: rotate(-15deg);
 }
 
 /* TITRE */

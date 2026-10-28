@@ -1,5 +1,3 @@
-import { gsap } from "gsap";
-
 let cleanup = null;
 
 function initSectionTransitions() {
@@ -9,17 +7,13 @@ function initSectionTransitions() {
         cleanup = null;
     }
 
-    // Récupérer les éléments de la page actuelle
-    const veil = document.querySelector(".section-transition");
     const home = document.querySelector("#home");
     const projects = document.querySelector("#projets");
     const profile = document.querySelector("#profile");
     const contact = document.querySelector("#contact");
 
     // Ne rien faire sur les pages de détail
-    if (!veil || !home || !projects || !profile || !contact) return;
-
-    const clamp = gsap.utils.clamp(0, 1);
+    if (!home || !projects || !profile || !contact) return;
 
     const sections = [home, projects, profile, contact];
 
@@ -51,62 +45,8 @@ function initSectionTransitions() {
         );
     };
 
-    // Animation du voile
-    const updateVeil = () => {
-        const viewportHeight = window.innerHeight;
-
-        const projectsTop = projects.getBoundingClientRect().top;
-        const profileTop = profile.getBoundingClientRect().top;
-        const contactTop = contact.getBoundingClientRect().top;
-
-        let color = "#ff8a00";
-        let opacity = 0;
-
-        // HOME → PROJETS
-        if (projectsTop > 0) {
-            const progress = clamp(1 - projectsTop / viewportHeight);
-
-            color = "#ff8a00";
-            opacity = progress * 0.18;
-
-            // PROJETS
-        } else if (profileTop >= viewportHeight) {
-            color = "#ff8a00";
-            opacity = 0.18;
-
-            // PROJETS → PROFIL
-        } else if (profileTop > 0) {
-            const progress = clamp(1 - profileTop / viewportHeight);
-
-            color = "#ff8a00";
-            opacity = 0.18 * (1 - progress);
-
-            // PROFIL
-        } else if (contactTop >= viewportHeight) {
-            color = "#ff8a00";
-            opacity = 0;
-
-            // PROFIL → CONTACT
-        } else if (contactTop > 0) {
-            const progress = clamp(1 - contactTop / viewportHeight);
-
-            color = "#d40000";
-            opacity = progress * 0.16;
-
-            // CONTACT
-        } else {
-            color = "#d40000";
-            opacity = 0.16;
-        }
-
-        gsap.set(veil, {
-            backgroundColor: color,
-            opacity: opacity,
-        });
-    };
-
+    // Mise à jour au scroll
     const updatePage = () => {
-        updateVeil();
         updateURL();
     };
 
@@ -141,7 +81,7 @@ function initSectionTransitions() {
     // Mise à jour après restauration du scroll par Turbo
     requestAnimationFrame(updatePage);
 
-    // Fonction de nettoyage
+    // Nettoyage des écouteurs
     cleanup = () => {
         window.removeEventListener("scroll", updatePage);
         window.removeEventListener("resize", updatePage);
