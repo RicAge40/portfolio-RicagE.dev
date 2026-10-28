@@ -25,6 +25,7 @@ function initProjectPanels() {
 
             // Fermer immédiatement les autres projets
             document
+
                 .querySelectorAll(".project-card.is-open")
                 .forEach((other) => {
                     if (other === card) return;
@@ -129,6 +130,27 @@ function initProjectPanels() {
                 trigger.focus();
             }
         });
+        // Refermer la carte lorsque le centre de l'écran quitte PROJETS
+        const projectsSection = document.querySelector("#projets");
+
+        if (projectsSection) {
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    if (
+                        !entry.isIntersecting &&
+                        card.classList.contains("is-open")
+                    ) {
+                        closePanel();
+                    }
+                },
+                {
+                    rootMargin: "-50% 0px -49% 0px",
+                    threshold: 0,
+                },
+            );
+
+            observer.observe(projectsSection);
+        }
     });
 }
 
