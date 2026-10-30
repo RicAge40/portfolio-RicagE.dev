@@ -16,6 +16,7 @@ function initSectionTransitions() {
     if (!home || !projects || !profile || !contact) return;
 
     const sections = [home, projects, profile, contact];
+    const heroNav = document.querySelector(".hero-nav");
 
     let currentHash = window.location.hash;
 
@@ -30,7 +31,18 @@ function initSectionTransitions() {
                 activeSection = section;
             }
         });
+        heroNav?.classList.toggle("is-docked", activeSection !== home);
 
+        heroNav?.querySelectorAll("a").forEach((link) => {
+            const isActive =
+                link.getAttribute("href") === `#${activeSection.id}`;
+
+            if (isActive) {
+                link.setAttribute("aria-current", "location");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
         const newHash =
             activeSection.id === "home" ? "" : `#${activeSection.id}`;
 

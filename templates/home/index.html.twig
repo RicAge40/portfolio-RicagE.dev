@@ -22,6 +22,12 @@
     <span></span>
 </button>
     
+ <nav class="hero-nav">
+        <a href="#home">ACCUEIL</a>
+        <a href="#projets">PROJETS</a>
+        <a href="#profile">PROFIL</a>
+        <a href="#contact">CONTACT</a>
+    </nav>   
 <nav id="mobile-menu" class="mobile-menu" aria-label="Navigation mobile" inert>
     <a href="#home">ACCUEIL</a>
     <a href="#projets">PROJETS</a>
@@ -47,33 +53,17 @@
             </p>
         </div>
 
-        <nav class="hero-nav">
-        <a href="#projets">PROJETS</a>
-        <a href="#profile">PROFIL</a>
-        <a href="#contact">CONTACT</a>
-    </nav>
+        
 
     </section>
 
     <section id="projets" class="projects">
 
-    <div class="section-heading-nav">
+    <div class="section-heading">
 
     <h2>PROJETS</h2>
 
-    <nav class="section-mini-nav" aria-label="Navigation entre les sections">
-        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">
-            ACCUEIL
-        </a>
-
-        <a href="#profile" class="section-mini-nav__link section-mini-nav__link--profile">
-            PROFIL
-        </a>
-
-        <a href="#contact" class="section-mini-nav__link section-mini-nav__link--contact">
-            CONTACT
-        </a>
-    </nav>
+  
 
 </div>
 
@@ -118,95 +108,54 @@
 
 </section>
 
-<section id="profile" class="profile">
-
-
-    
+<section id="profile" class="profile">   
     
 
     <div class="section-heading">
     <h2>PROFIL</h2>
 
-    <nav class="section-mini-nav" aria-label="Navigation depuis Profil">
-        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">ACCUEIL</a>
-        <a href="#projets" class="section-mini-nav__link section-mini-nav__link--projects">PROJETS</a>
-        <a href="#contact" class="section-mini-nav__link section-mini-nav__link--contact">CONTACT</a>
-    </nav>
+    
 </div>
 
      {# =====================================
        PHOTO + PRÉSENTATION
     ===================================== #}
 
-    <div class="profile-content">
 
-        {# Emplacement de la future photo #}
-        <div class="profile-photo">
-    <img
-        src="{{ asset('images/image-profile.jfif') }}"
-        alt="Portrait du développeur RicagE.dev"
-        loading="lazy"
-    >
-</div>
-<div class="profile-intro">
 
-            <h3>Du terrain au numérique.</h3>
+<div class="profile-content">
 
-            <p>
-                Développeur web orienté front-end, je conçois et développe
-                des sites internet modernes, accessibles et adaptés
-                aux besoins de chaque projet.
-            </p>
+    <div class="profile-intro">
 
-            <p>
-                Du site vitrine simple et efficace à l'expérience web
-                interactive et animée, j'accorde une attention particulière
-                au design, à la fluidité et à l'expérience utilisateur.
-            </p>
+        <h3>Du terrain au numérique.</h3>
 
-            <p>
-                Fort de mon expérience dans les métiers techniques,
-                je comprends les réalités du terrain et les besoins
-                concrets des artisans, indépendants et petites entreprises.
-            </p>
+        <p>
+            Développeur web orienté <strong>front-end</strong>,
+            je conçois et développe des sites internet modernes,
+            accessibles et adaptés aux besoins de chaque projet.
+        </p>
 
-        </div>
-         </div>
+        <p>
+            Du site vitrine simple à l'expérience web interactive,
+            j'accorde une attention particulière au
+            <strong>design</strong>, à la fluidité et à
+            <strong>l'expérience utilisateur</strong>.
+        </p>
 
-    
+        <p>
+            Fort de mon expérience dans les métiers techniques,
+            je comprends les réalités du terrain et les besoins
+            concrets des artisans, indépendants et petites entreprises.
+        </p>
 
-    {# =====================================
-       MES SERVICES
-    ===================================== #}
+    </div>
 
-    <div class="profile-services">
-
-        <h3>MES SERVICES</h3>
-
-        <div class="profile-services__grid">
-
-            <div class="profile-services__item">
-                <h4>CRÉATION DE SITES WEB</h4>
-
-                <p>Sites vitrines</p>
-                <p>Sites professionnels sur mesure</p>
-                <p>Design responsive</p>
-                <p>Animations et interactions</p>
-                <p>Référencement naturel (SEO)</p>
-            </div>
-
-            <div class="profile-services__item">
-                <h4>APPLICATIONS & OUTILS MÉTIER</h4>
-
-                <p>Applications web sur mesure</p>
-                <p>Gestion de clients</p>
-                <p>Devis et facturation</p>
-                <p>Tableaux de bord</p>
-                <p>Automatisation de tâches</p>
-            </div>
-
-        </div>
-
+    <div class="profile-photo">
+        <img
+            src="{{ asset('images/ricage-covert.png') }}"
+            alt="Portrait de profil du développeur RicAgE"
+            loading="lazy"
+        >
     </div>
 
     <div class="profile-skills">
@@ -246,6 +195,49 @@
     </div>
 
 </div>
+</div>
+
+         </div>
+
+    
+
+    {# =====================================
+       MES SERVICES
+    ===================================== #}
+
+    <div class="profile-services">
+
+        <h3>MES SERVICES</h3>
+
+        <div class="profile-services__grid">
+
+            <div class="profile-services__item">
+                <h4>CRÉATION DE SITES WEB</h4>
+
+                <p>Sites vitrines</p>
+                <p>Sites professionnels sur mesure</p>
+                <p>Design responsive</p>
+                <p>Animations et interactions</p>
+                <p>Référencement naturel (SEO)</p>
+            </div>
+
+            <div class="profile-services__item">
+                <h4>APPLICATIONS & OUTILS MÉTIER</h4>
+
+                <p>Applications web sur mesure</p>
+                <p>Gestion de clients</p>
+                <p>Devis et facturation</p>
+                <p>Tableaux de bord</p>
+                <p>Automatisation de tâches</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+</div>
 
    
 
@@ -260,11 +252,7 @@
     <div class="section-heading">
     <h2>CONTACT</h2>
 
-    <nav class="section-mini-nav" aria-label="Navigation depuis Contact">
-        <a href="#home" class="section-mini-nav__link section-mini-nav__link--home">ACCUEIL</a>
-        <a href="#projets" class="section-mini-nav__link section-mini-nav__link--projects">PROJETS</a>
-        <a href="#profile" class="section-mini-nav__link section-mini-nav__link--profile">PROFIL</a>
-    </nav>
+   
 </div>
 
     <div class="contact-content">

@@ -14,29 +14,6 @@
 
 /* Titre CONTACT */
 
-.contact h2 {
-    position: relative;
-    width: fit-content;
-    isolation: isolate;
-
-    font-size: clamp(2rem, 3.5vw, 3.25rem);
-    font-weight: 500;
-}
-
-.contact h2::before {
-    content: "";
-    position: absolute;
-    left: -12px;
-    bottom: -8px;
-    width: calc(100% + 24px);
-    height: 42px;
-
-    background: #8f0f01;
-    border-radius: 12px;
-    transform: rotate(-4deg);
-    z-index: -1;
-}
-
 /* Contenu central */
 
 .contact-content {
