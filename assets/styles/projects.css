@@ -10,8 +10,8 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: 2.5rem;
-    row-gap: 4rem;
+    column-gap: clamp(3rem, 6vw, 7rem);
+    row-gap: 3rem;
     align-content: start;
 }
 .project-card.is-open {
@@ -40,6 +40,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    min-height: 120px;
     margin-bottom: 1.2rem;
 }
 
@@ -53,9 +54,9 @@
 
 .project-number {
     display: block;
-    margin-top: 0.6rem;
-
-    color: #ff8a00;
+    flex-shrink: 0;
+    margin-top: 0;
+    color: var(--color-projects);
     font-size: 0.75rem;
     font-weight: 500;
 }
@@ -215,6 +216,45 @@
     outline-offset: 6px;
 }
 
+/* projet plombric */
+.project-card__status {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--color-projects);
+    border-radius: 4px;
+    color: var(--color-projects);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.project-card__summary {
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.project-card__summary + .project-card__summary {
+    margin-top: 1rem;
+}
+
+/* Logo Plomb’Ric */
+.project-card--building .project-card__logo {
+    width: clamp(240px, 20vw, 340px);
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    flex-shrink: 0;
+}
+.project-card--building.is-open {
+    grid-column: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.project-card--building.is-open .project-card__details {
+    padding: 0;
+    align-self: start;
+}
 /* ========================================
    RESPONSIVE
 ======================================== */

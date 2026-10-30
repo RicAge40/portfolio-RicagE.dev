@@ -1,54 +1,56 @@
-<article class="project-card">
+{% set isBuilding = project.status|default('') == 'building' %}
 
-    {# Carte avec les captures #}
+<article class="project-card{% if isBuilding %} project-card--building{% endif %}">
+
     <button
-    type="button"
-    class="project-card__trigger"
-    aria-expanded="false"
-    aria-controls="project-details-{{ project.slug }}"
-    aria-label="Afficher les informations du projet {{ project.title }}"
->
-    <div class="project-card__identity">
-        <span class="project-number">
-            {{ project.number }}
-        </span>
+        type="button"
+        class="project-card__trigger"
+        aria-expanded="false"
+        aria-controls="project-details-{{ project.slug }}"
+        aria-label="Afficher les informations du projet {{ project.title }}"
+    >
+        <div class="project-card__identity">
+            <span class="project-number">{{ project.number }}</span>
 
-        <img
-            src="{{ asset('images/projets/HUMAIN-blanc.svg') }}"
-            alt="{{ project.title }}"
-            class="project-card__logo"
-        >
-    </div>
-
-    <div class="project-visual">
-        {% for image in project.images %}
             <img
-                src="{{ asset(image) }}"
-                alt="{% if loop.first %}Aperçu du projet {{ project.title }}{% endif %}"
-                class="project-card__image"
-                loading="lazy"
-                {% if not loop.first %}aria-hidden="true"{% endif %}
+                src="{{ asset(project.logo) }}"
+                alt="{{ project.title }}"
+                class="project-card__logo"
             >
-        {% endfor %}
-    </div>
-</button>
+        </div>
 
-    {# Panneau d'informations #}
+        {% if isBuilding %}
+            <span class="project-card__status">
+                En cours de construction
+            </span>
+        {% else %}
+            <div class="project-visual">
+                {% for image in project.images %}
+                    <img
+                        src="{{ asset(image) }}"
+                        alt="{% if loop.first %}Aperçu du projet {{ project.title }}{% endif %}"
+                        class="project-card__image"
+                        loading="lazy"
+                        {% if not loop.first %}aria-hidden="true"{% endif %}
+                    >
+                {% endfor %}
+            </div>
+        {% endif %}
+    </button>
+
     <div
         id="project-details-{{ project.slug }}"
         class="project-card__details"
         hidden
     >
         <div class="project-card__details-inner">
-
-            
-
             <p>{{ project.intro }}</p>
-
             <p>{{ project.features }}</p>
 
             <div class="project-card__meta">
-                <h4>TECHNOLOGIES</h4>
+                <h4>
+                    {{ isBuilding ? 'TECHNOLOGIES PRÉVUES' : 'TECHNOLOGIES' }}
+                </h4>
                 <p>{{ project.stack }}</p>
             </div>
 
@@ -57,15 +59,16 @@
                 <p>Design & développement web</p>
             </div>
 
-            <a
-    href="https://humainmusic.fr"
-    class="project-card__visit"
-    target="_blank"
-    rel="noopener noreferrer"
->
-    VISITER LE SITE ↗
-</a>
-
+            {% if project.url|default(null) %}
+                <a
+                    href="{{ project.url }}"
+                    class="project-card__visit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    VISITER LE SITE ↗
+                </a>
+            {% endif %}
         </div>
     </div>
 
