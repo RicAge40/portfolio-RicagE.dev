@@ -17,36 +17,10 @@
 .project-card.is-open {
     z-index: 1000;
 }
-.projects h2 {
-    position: relative;
-    z-index: 1;
+
+.projects > .section-heading {
     grid-column: 1 / -1;
-    width: fit-content;
-
-    font-size: clamp(2rem, 3.5vw, 3.25rem);
-    font-weight: 500;
 }
-
-/* Coup de pinceau orange */
-
-.projects h2::before {
-    content: "";
-    position: absolute;
-
-    left: -12px;
-    right: -18px;
-    top: 45%;
-
-    height: 65%;
-    background: rgba(255, 138, 0, 0.55);
-
-    border-radius: 12px;
-    transform: rotate(-4deg);
-
-    z-index: -1;
-    pointer-events: none;
-}
-
 /* ========================================
    CARTE PROJET
 ======================================== */

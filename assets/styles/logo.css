@@ -154,19 +154,15 @@
     top: 50%;
     height: 16px;
 
-    background: #ff8a00;
     border-radius: 4px 2px 5px 3px;
-
     transform: translateY(-50%) rotate(-3deg);
     z-index: -1;
 }
-.hero-nav a:nth-child(2)::before {
-    background: #a84a00;
+
+.hero-nav a[aria-current="location"] {
+    display: none;
 }
 
-.hero-nav a:nth-child(3)::before {
-    background: #d40000;
-}
 /* ========================================
    HERO — MOBILE
 ======================================== */
@@ -230,5 +226,49 @@
         width: 100%;
         justify-content: center;
         gap: 2.5rem;
+    }
+}
+
+/* Déplacement de la navigation — hors mobile */
+@media (min-width: 601px) {
+    .hero-nav {
+        position: fixed;
+        top: calc(100dvh - 4.5rem);
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        width: max-content;
+        z-index: 100;
+
+        transform: translate(-50%, -100%);
+
+        transition:
+            top 0.7s ease,
+            left 0.7s ease,
+            transform 0.7s ease,
+            gap 0.7s ease;
+    }
+
+    .hero-nav.is-docked {
+        top: 2rem;
+        left: 95%;
+        transform: translate(-100%, 0);
+        gap: 1.5rem;
+    }
+
+    /* Le lien reste en place pour éviter un saut au déplacement */
+    .hero-nav:not(.is-docked) a[href="#home"] {
+        display: none;
+    }
+
+    /* Remplace les mini-nav des sections */
+    .section-mini-nav {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-nav {
+        transition: none;
     }
 }

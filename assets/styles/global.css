@@ -27,6 +27,31 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --color-projects: #ff8a00;
+    --color-profile: #a84a00;
+    --color-contact: #8f0f01;
+    --color-home: #fdb85d;
+}
+
+.projects .section-heading h2::before,
+.hero-nav a[href="#projets"]::before {
+    background: var(--color-projects);
+}
+
+.hero-nav a[href="#home"]::before {
+    background: var(--color-home);
+}
+
+.profile .section-heading h2::before,
+.hero-nav a[href="#profile"]::before {
+    background: var(--color-profile);
+}
+
+.contact .section-heading h2::before,
+.hero-nav a[href="#contact"]::before {
+    background: var(--color-contact);
+}
 
 html {
     scrollbar-gutter: stable;
@@ -53,8 +78,36 @@ body {
 }
 
 .section-heading h2 {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+    width: fit-content;
     margin-bottom: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
 }
+
+/* Pavé derrière les titres */
+
+.section-heading h2::before {
+    content: "";
+    position: absolute;
+
+    left: -12px;
+    right: -12px;
+    bottom: -5px;
+
+    height: 24px;
+
+    border-radius: 8px;
+    transform: rotate(-4deg);
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Couleurs des sections */
 
 .section-mini-nav {
     display: flex;
@@ -75,6 +128,10 @@ main {
 main > section {
     position: relative;
     z-index: 1;
+}
+
+.hero-nav {
+    pointer-events: auto;
 }
 
 /* ========================================
@@ -186,5 +243,17 @@ main > section {
     .section-heading h2 {
         font-size: 1.5rem;
         line-height: 1.2;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-heading h2 {
+        font-size: 1.25rem;
+    }
+
+    .section-heading h2::before {
+        height: 20px;
+        bottom: -4px;
+        border-radius: 6px;
     }
 }
