@@ -22,3 +22,4 @@ import "./animations/project-scrollbar.js";
 import "./animations/project-panels.js";
 import "./animations/mobile-menu.js";
 import "./animations/profile-reveal.js";
+import "./animations/contact.js";

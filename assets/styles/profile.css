@@ -11,8 +11,9 @@
     overflow: hidden;
 }
 
-
-
+.profile > .section-heading {
+    margin-bottom: 2rem;
+}
 
 /* ========================================
    MES SERVICES
@@ -86,7 +87,7 @@
     left: 220px;
     top: 50%;
 
-    transform: translateY(-50%);
+    transform: translateY(-150px);
 
     overflow: visible;
     border: none;

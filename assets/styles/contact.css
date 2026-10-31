@@ -12,42 +12,220 @@
     flex-direction: column;
 }
 
-/* Titre CONTACT */
+.contact > .section-heading {
+    margin-bottom: 0.5rem;
+}
 
-/* Contenu central */
-
+/* Contenu sous le titre CONTACT */
 .contact-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding-block: 3rem 4rem;
+}
+/* Réinitialisation du bouton, sans modifier les animations */
+button.contact-scatter {
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+}
+.contact-scatter[hidden] {
+    display: none;
+}
 
+.contact:has(.contact-form-panel:not([hidden])) .contact-content {
+    padding-block: 1rem 2rem;
+}
+
+.contact:has(.contact-form-panel:not([hidden])) .contact-form-panel {
+    margin-top: 0;
+}
+
+.contact-form-panel {
+    width: min(100%, 1100px);
+    margin-top: 3rem;
+}
+
+.contact-form-panel[hidden] {
+    display: none;
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    text-align: left;
+}
+
+.contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.contact-form__field--full,
+.contact-form__actions {
+    grid-column: 1 / -1;
+}
+
+.contact-form label {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem 0;
+    border: 0;
+    border-bottom: 1px solid #777;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+    outline: 2px solid var(--color-projects);
+    outline-offset: 5px;
+    border-bottom-color: var(--color-projects);
+}
+
+.contact-form__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.contact-form__actions small {
+    color: #bbb;
+}
+
+.contact-form__actions button {
+    padding: 0.5rem 0;
+    border: 0;
+    border-bottom: 2px solid var(--color-projects);
+    background: transparent;
+    color: #aaa;
+    font: inherit;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Le texte reste assemblé pendant la saisie */
+.contact-scatter[aria-expanded="true"] .contact-scatter__line > span {
+    transform: none;
+}
+.contact-form__success {
+    align-self: center;
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    margin: 1.5rem auto 0;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    --color-contact: #8f0f01;
+    color: #fff;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    line-height: 1.5;
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .contact-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* La zone reste fixe pendant le mouvement des morceaux */
+.contact-scatter {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+    max-width: 100%;
+    min-height: 0;
+    padding: 1rem;
 
-    text-align: center;
-    gap: 2.5rem;
+    color: #fff;
+    text-decoration: none;
 }
 
+.contact-scatter__line {
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(1.5rem, 4.5vw, 5rem);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.contact-scatter__line--accent {
+    color: var(--color-projects);
+}
+
+.contact-scatter__line--email {
+    margin-top: 2rem;
+    font-size: clamp(1rem, 2.8vw, 3rem);
+}
+
+.contact-scatter__line > span {
+    display: inline-block;
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Assemblage au survol et au clavier */
+.contact-scatter:hover .contact-scatter__line > span,
+.contact-scatter:focus-visible .contact-scatter__line > span {
+    transform: translate(0, 0) rotate(0deg);
+}
+
+.contact-scatter:focus-visible {
+    outline: 2px solid var(--color-projects);
+    outline-offset: 6px;
+}
+
+/* Sur tactile, le texte est directement assemblé */
+@media (hover: none), (max-width: 600px) {
+    .contact-scatter {
+        min-height: 320px;
+        padding-block: 2rem;
+    }
+
+    .contact-scatter__line > span {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-scatter__line > span {
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Accroche plus mesurée */
 .contact-content h3 {
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
     font-weight: 500;
     line-height: 1.2;
 }
 
-/* Adresse e-mail */
-
-.contact-email {
-    color: #fff;
-    font-size: clamp(1rem, 1.8vw, 1.5rem);
-    text-decoration: none;
-    border-bottom: 1px solid #8f0f01;
-    padding-bottom: 0.5rem;
-
-    transition: color 0.3s ease;
-}
-
-.contact-email:hover {
-    color: #8f0f01;
+.contact-content h3 .contact-highlight {
+    color: var(--color-projects);
+    font-size: 1em;
+    line-height: 1.2;
 }
 
 /* Réseaux sociaux */
@@ -81,6 +259,19 @@
     display: block;
     width: 30px;
     height: 30px;
+}
+
+.contact-form__actions .contact-form-back {
+    margin: 0;
+    border: 0;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.contact-form__actions button[type="submit"] {
+    color: #fff;
+    cursor: pointer;
 }
 
 /* ========================================

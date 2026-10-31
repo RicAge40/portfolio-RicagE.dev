@@ -15,11 +15,20 @@
     z-index: 1000;
 }
 
+.site-footer .contact-socials {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
 .site-footer__inner {
+    position: relative;
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .site-footer__brand {
@@ -49,5 +58,11 @@
         width: calc(100% + 3rem);
         margin-left: -1.5rem;
         padding: 1.5rem;
+    }
+    .site-footer .contact-socials {
+        position: static;
+        transform: none;
+        margin: 0;
+        justify-content: center;
     }
 }

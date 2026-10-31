@@ -267,46 +267,156 @@ url: 'https://humainmusic.fr',
    
 </div>
 
-    <div class="contact-content">
+{% for message in app.flashes('contact_success') %}
+    <p class="contact-form__success" role="status">
+        {{ message }}
+    </p>
+{% endfor %}
 
-        <h3>
-    <span>Un projet en tête ?</span>
-    <span class="contact-highlight">Parlons-en.</span>
-</h3>
+  <div class="contact-content">
+    <button
+    type="button"
+    class="contact-scatter"
+    aria-expanded="{{ contactErrors|default([]) ? 'true' : 'false' }}"
+{% if contactErrors|default([]) %}hidden{% endif %}
+    aria-controls="contact-form-panel"
+    aria-label="Afficher le formulaire de contact"
+>
+        <span class="contact-scatter__line" aria-hidden="true">
+            <span style="--x: -5vw; --y: -3rem; --r: -8deg">Un</span>
+            <span style="--x: -2vw; --y: 2rem; --r: 6deg">pro</span><span
+                style="--x: 2vw; --y: -1rem; --r: -5deg"
+            >jet</span>
+            <span style="--x: 5vw; --y: 3rem; --r: 7deg">en tête ?</span>
+        </span>
 
-        <a href="mailto:ricage.dev@gmail.com"
-   class="contact-email">
-    ricage.dev@gmail.com ↗
-</a>
+        <span class="contact-scatter__line contact-scatter__line--accent"
+              aria-hidden="true">
+            <span style="--x: -7vw; --y: 1rem; --r: -6deg">Par</span><span
+                style="--x: 1vw; --y: -2rem; --r: 8deg"
+            >lons</span><span
+                style="--x: 6vw; --y: 2rem; --r: -5deg"
+            >-en.</span>
+        </span>
 
-        <div class="contact-socials">
+        <span class="contact-scatter__line contact-scatter__line--email"
+              aria-hidden="true">
+            <span style="--x: -6vw; --y: 2rem; --r: 5deg">ric</span><span
+                style="--x: -3vw; --y: -1rem; --r: -8deg"
+            >age</span><span
+                style="--x: 0vw; --y: 3rem; --r: 6deg"
+            >.dev</span><span
+                style="--x: 3vw; --y: -2rem; --r: -7deg"
+            >@</span><span
+                style="--x: 5vw; --y: 1rem; --r: 5deg"
+            >gmail</span><span
+                style="--x: 7vw; --y: 3rem; --r: -6deg"
+            >.com</span>
+        </span>
+    </button>
 
-    <a href="https://github.com/RicAge40"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="GitHub de RicAgE.dev (nouvel onglet)">
+   <div
+    id="contact-form-panel"
+    class="contact-form-panel"
+    {% if not contactErrors|default([]) %}hidden{% endif %}
+>
+    {% if contactErrors|default([]) %}
+        <div class="contact-form__errors" role="alert">
+            {% for error in contactErrors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.35.78 1.04.78 2.1v3.11c0 .3.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
-        </svg>
-    </a>
+    <form
+        class="contact-form"
+        action="{{ path('app_home') }}#contact"
+        method="post"
+        data-turbo="false"
+    >
+        <input
+            type="hidden"
+            name="_token"
+            value="{{ csrf_token('contact') }}"
+        >
 
-    <a href="https://www.linkedin.com/in/richard-aumage-dev/"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Profil LinkedIn (nouvel onglet)">
+        <div class="contact-form__field">
+            <label for="contact-name">Nom *</label>
+            <input
+                type="text"
+                id="contact-name"
+                name="name"
+                value="{{ contactValues.name|default('') }}"
+                autocomplete="name"
+                maxlength="150"
+                required
+            >
+        </div>
 
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H5.21V9.98h2.72v8.77ZM6.57 8.78a1.58 1.58 0 1 1 0-3.16 1.58 1.58 0 0 1 0 3.16Zm12.18 9.97h-2.72v-4.27c0-1.02-.02-2.33-1.42-2.33-1.42 0-1.64 1.11-1.64 2.26v4.34h-2.72V9.98h2.61v1.2h.04c.36-.69 1.25-1.42 2.57-1.42 2.75 0 3.28 1.81 3.28 4.16v4.83Z"/>
-        </svg>
-    </a>
+        <div class="contact-form__field">
+            <label for="contact-email">E-mail *</label>
+            <input
+                type="email"
+                id="contact-email"
+                name="email"
+                value="{{ contactValues.email|default('') }}"
+                autocomplete="email"
+                maxlength="254"
+                required
+            >
+        </div>
 
-</div>
+        <div class="contact-form__field">
+            <label for="contact-company">Entreprise</label>
+            <input
+                type="text"
+                id="contact-company"
+                name="company"
+                value="{{ contactValues.company|default('') }}"
+                autocomplete="organization"
+                maxlength="150"
+            >
+        </div>
 
+        <div class="contact-form__field">
+            <label for="contact-phone">Téléphone</label>
+            <input
+                type="tel"
+                id="contact-phone"
+                name="phone"
+                value="{{ contactValues.phone|default('') }}"
+                autocomplete="tel"
+                maxlength="40"
+            >
+        </div>
+
+        <div class="contact-form__field contact-form__field--full">
+            <label for="contact-message">Votre projet *</label>
+            <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                maxlength="10000"
+                required
+            >{{ contactValues.message|default('') }}</textarea>
+        </div>
+
+                       <div class="contact-form__actions">
+                    <small>* Champs obligatoires.</small>
+
+                    <button type="button" class="contact-form-back">
+                        ANNULER
+                    </button>
+
+                    <button type="submit">
+                        ENVOYER LE MESSAGE ↗
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-   {% include 'components/footer.html.twig' %}
-
+    {% include 'components/footer.html.twig' %}
 </section>
 
 
